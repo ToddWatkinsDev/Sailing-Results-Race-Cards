@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Play eSailing Results Card</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --es-accent:   #006C5D;
+    --es-deep:     #01433F;
+    --es-red:      #E15047;
+
+    --color-bg:       #01433F;
+    --color-surface:  #006C5D;
+    --color-surface-2:#01534E;
+    --color-border:   rgba(255,255,255,0.1);
+    --color-text:     #FFFFFF;
+    --color-muted:    rgba(255,255,255,0.55);
+    --color-accent:   #E15047;
+    --color-gold:     #F5C842;
+    --color-silver:   #B0B8C8;
+    --color-bronze:   #D08850;
+
+    --font-body: 'Inter', system-ui, sans-serif;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+  }
+
+  html, body {
+    min-height: 100dvh;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1rem;
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(0,108,93,0.4) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(1,67,63,0.5) 0%, transparent 50%),
+      var(--color-bg);
+  }
+
+  .card {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(1, 83, 78, 0.65);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), 0 24px 64px rgba(0,0,0,0.45);
+  }
+
+  /* Header */
+  .card-header {
+    background: var(--color-surface);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .logo svg { display: block; }
+
+  .header-info { flex: 1; }
+  .header-info h1 {
+    font-size: clamp(1.1rem, 3vw, 1.35rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    line-height: 1.1;
+  }
+  .header-info .subtitle {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+  }
+
+  .header-badge {
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.28rem 0.65rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  /* Podium */
+  .podium {
+    padding: 1.5rem 2rem 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    align-items: end;
+  }
+
+  .podium-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 1rem 0.5rem 0.75rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+  }
+
+  .podium-item.first {
+    background: rgba(245, 200, 66, 0.12);
+    border-color: rgba(245, 200, 66, 0.35);
+    transform: translateY(-8px);
+  }
+  .podium-item.second {
+    background: rgba(176, 184, 200, 0.1);
+    border-color: rgba(176, 184, 200, 0.25);
+  }
+  .podium-item.third {
+    background: rgba(208, 136, 80, 0.1);
+    border-color: rgba(208, 136, 80, 0.25);
+  }
+
+  .podium-medal { font-size: 1.6rem; line-height: 1; }
+
+  .podium-name {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #fff;
+  }
+  .podium-item.first .podium-name { color: var(--color-gold); }
+  .podium-item.second .podium-name { color: var(--color-silver); }
+  .podium-item.third .podium-name { color: var(--color-bronze); }
+
+  .podium-sail {
+    font-size: 0.68rem;
+    color: var(--color-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .podium-score {
+    font-size: 1.4rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+  }
+  .podium-item.first .podium-score { color: var(--color-gold); }
+  .podium-item.second .podium-score { color: var(--color-silver); }
+  .podium-item.third .podium-score { color: var(--color-bronze); }
+
+  .podium-score-label {
+    font-size: 0.6rem;
+    color: var(--color-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 600;
+    margin-top: -4px;
+  }
+
+  /* Table */
+  .results-section {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .section-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 0.5rem 0.75rem 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead tr {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  thead th {
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+  thead th.num { text-align: center; width: 42px; }
+  thead th.score { text-align: right; }
+
+  tbody tr {
+    border-radius: var(--radius-lg);
+    transition: background 150ms ease;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.04); }
+
+  tbody td {
+    padding: 0.7rem 0.75rem;
+    font-size: 0.88rem;
+    vertical-align: middle;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+
+  td.pos {
+    text-align: center;
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    font-variant-numeric: tabular-nums;
+    width: 42px;
+  }
+  tr:nth-child(1) td.pos { color: var(--color-gold); }
+  tr:nth-child(2) td.pos { color: var(--color-silver); }
+  tr:nth-child(3) td.pos { color: var(--color-bronze); }
+
+  td.name {
+    font-weight: 600;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .flag { font-size: 1.1rem; line-height: 1; }
+
+  td.sail {
+    font-size: 0.8rem;
+    color: var(--color-muted);
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  td.net {
+    text-align: right;
+    font-weight: 800;
+    font-size: 1rem;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.01em;
+    color: #fff;
+  }
+  tr:nth-child(1) td.net { color: var(--color-gold); }
+  tr:nth-child(2) td.net { color: var(--color-silver); }
+  tr:nth-child(3) td.net { color: var(--color-bronze); }
+
+  /* Footer */
+  .card-footer {
+    padding: 0.85rem 2rem;
+    border-top: 1px solid var(--color-border);
+    background: rgba(1,67,63,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .footer-dot {
+    width: 6px; height: 6px;
+    background: var(--color-accent);
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100%{opacity:1;transform:scale(1)}
+    50%{opacity:0.4;transform:scale(0.75)}
+  }
+  .footer-text { font-size: 0.7rem; color: var(--color-muted); }
+  .footer-brand { font-size: 0.7rem; font-weight: 600; color: rgba(255,255,255,0.35); letter-spacing: 0.05em; }
+
+  @media (max-width: 480px) {
+    .card-header { padding: 1.25rem 1.25rem; }
+    .podium { padding: 1rem 1rem 0.75rem; }
+    .results-section { padding: 0 0.75rem 1rem; }
+    .card-footer { padding: 0.75rem 1.25rem; }
+  }
+
+  /* 1. Default link style (overrides the standard blue) */
+a {
+  color: #f8faf8; /* Sets the link color to grey */
+  text-decoration: none; /* Optional: Removes the default underline */
+  transition: color 0.2s ease; /* Makes color changes smooth */
+}
+
+/* 2. Hover state (when the mouse is over the link) */
+a:hover {
+  color: #30FF68; /* Changes to a bright mint green on hover */
+  text-decoration: underline; /* Optional: Adds the underline back on hover */
+}
+
+/* 3. Visited state (links the user has already clicked) */
+a:visited {
+  color: #929292; /* A light gray to show it's been clicked */
+}
+
+/* 4. Active state (the exact moment the link is being clicked) */
+a:active {
+  color: #111111; /* Darkens briefly when clicked */
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="card">
+
+    <!-- Header -->
+    <div class="card-header">
+      <div class="logo">
+        <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Play eSailing logo">
+          <rect width="42" height="42" rx="10" fill="rgba(255,255,255,0.1)"/>
+          <path d="M21 8 L21 32" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M21 10 L33 28 L21 28 Z" fill="white" fill-opacity="0.9"/>
+          <path d="M21 14 L11 26 L21 26 Z" fill="white" fill-opacity="0.45"/>
+          <path d="M13 32 Q21 35 29 32" stroke="#E15047" stroke-width="2" stroke-linecap="round" fill="none"/>
+        </svg>
+      </div>
+      <div class="header-info">
+        <h1 id="event-name">Regatta Results</h1>
+        <div class="subtitle"><span id="event-date">Loading date...</span> · Powered by <a href="https://sailranks.com/v/home" target="_blank">Sailranks</a></div>
+      </div>
+      <div class="header-badge" id="race-day">...</div>
+    </div>
+
+    <!-- Podium -->
+    <div class="podium">
+      <!-- 2nd place -->
+      <div class="podium-item second">
+        <div class="podium-medal">🥈</div>
+        <div class="podium-name" id="podium-2-name">--</div>
+        <div class="podium-sail" id="podium-2-sail">--</div>
+        <div class="podium-score" id="podium-2-pts">--</div>
+        <div class="podium-score-label">Net pts</div>
+      </div>
+      <!-- 1st place -->
+      <div class="podium-item first">
+        <div class="podium-medal">🥇</div>
+        <div class="podium-name" id="podium-1-name">--</div>
+        <div class="podium-sail" id="podium-1-sail">--</div>
+        <div class="podium-score" id="podium-1-pts">--</div>
+        <div class="podium-score-label">Net pts</div>
+      </div>
+      <!-- 3rd place -->
+      <div class="podium-item third">
+        <div class="podium-medal">🥉</div>
+        <div class="podium-name" id="podium-3-name">--</div>
+        <div class="podium-sail" id="podium-3-sail">--</div>
+        <div class="podium-score" id="podium-3-pts">--</div>
+        <div class="podium-score-label">Net pts</div>
+      </div>
+    </div>
+
+    <!-- Full Results Table -->
+    <div class="results-section">
+      <div class="section-label">Full Standings</div>
+      <table>
+        <thead>
+          <tr>
+            <th class="num">#</th>
+            <th>Name</th>
+            <th>Sail</th>
+            <th class="score">Net</th>
+          </tr>
+        </thead>
+        <tbody id="standings-table-body">
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer -->
+    <div class="card-footer">
+      <div class="footer-left">
+        <div class="footer-dot"></div>
+        <span class="footer-text" id="footer-text">Loading Data...</span>
+      </div>
+      <span class="footer-brand"> <a href="https://playesailing.io">playesailing.io</a> · <a href="https://github.com/ToddWatkinsDev">@ToddWatkinsDev</a></span>
+    </div>
+
+  </div>
+</div>
+
+<!-- DATA FETCH SCRIPT -->
+<script>
+  async function loadLocalResults() {
+    try {
+      const response = await fetch('./results.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error('Failed to load JSON');
+      
+      const data = await response.json();
+      updateUI(data);
+    } catch (error) {
+      console.error("Error fetching local data:", error);
+      document.getElementById('footer-text').innerText = "Error: Check console. Make sure Python server is running.";
+    }
+  }
+
+  function updateUI(data) {
+    // Update Header Metadata
+    if (data.eventName) {
+      document.getElementById('event-name').innerText = data.eventName;
+    }
+    if (data.eventDate) {
+      document.getElementById('event-date').innerText = data.eventDate;
+    }
+    if (data.raceDay) {
+      document.getElementById('race-day').innerText = data.raceDay;
+    }
+
+    const competitors = data.competitors;
+    if (!competitors || competitors.length === 0) return;
+
+    // 1. Fill the top 3 Podium cards
+    if (competitors[0]) {
+      document.getElementById('podium-1-name').innerText = competitors[0].name;
+      document.getElementById('podium-1-sail').innerText = competitors[0].sail;
+      document.getElementById('podium-1-pts').innerText = competitors[0].points;
+    }
+    if (competitors[1]) {
+      document.getElementById('podium-2-name').innerText = competitors[1].name;
+      document.getElementById('podium-2-sail').innerText = competitors[1].sail;
+      document.getElementById('podium-2-pts').innerText = competitors[1].points;
+    }
+    if (competitors[2]) {
+      document.getElementById('podium-3-name').innerText = competitors[2].name;
+      document.getElementById('podium-3-sail').innerText = competitors[2].sail;
+      document.getElementById('podium-3-pts').innerText = competitors[2].points;
+    }
+
+    // 2. Generate the Full Standings Table
+    const tbody = document.getElementById('standings-table-body');
+    tbody.innerHTML = ''; 
+
+    competitors.forEach(comp => {
+      const flagHtml = comp.flag ? `<span class="flag">${comp.flag}</span> ` : '';
+      
+      tbody.innerHTML += `
+        <tr>
+          <td class="pos">${comp.position}</td>
+          <td class="name">${flagHtml}${comp.name}</td>
+          <td class="sail">${comp.sail}</td>
+          <td class="net">${comp.points}</td>
+        </tr>
+      `;
+    });
+    
+    // 3. Update the footer statistics
+    document.getElementById('footer-text').innerText = `${competitors.length} Competitors · Net Points Scoring`;
+  }
+
+  document.addEventListener('DOMContentLoaded', loadLocalResults);
+</script>
+
+</body>
+</html>

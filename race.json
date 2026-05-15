@@ -1,0 +1,31 @@
+{
+  "eventName": "Monday Mariner Series", 
+  "enter Event Name": "comment",
+  "eventDate": "Monday · 18 May 2026",  
+  "enter Event Date keep the dot": "comment",
+  "raceDay": "Final", 
+  "enter race day": "comment",
+  "races": [
+    {
+      "raceNumber": "123456",
+      "less than 6 characters no space": "comment",
+      "course": "Gate Mark",
+      "boat": "SSL",
+      "wind": "11 kts"
+    },
+    {
+      "raceNumber": "123 1",
+      "less than 5 characters space": "comment",
+      "course": "LA2",
+      "boat": "SSL",
+      "wind": "11 kts"
+    },
+    {
+      "raceNumber": "Medal Race", 
+      "special format for 'Medal Race' ": "comment",
+      "course": "Gate Mark",
+      "boat": "SSL",
+      "wind": "11 kts"
+    }
+  ]
+}

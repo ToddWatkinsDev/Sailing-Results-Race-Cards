@@ -1,0 +1,56 @@
+{
+  "eventName": "Monday Muffin Series",
+  "enter Event Name": "comment",
+  "eventDate": "Monday · 12 May 2026",
+  "enter Event Date keep the dot": "comment",
+  "raceDay": "FINAL",
+  "enter race day": "comment",
+  "competitors example": 
+  [
+      {
+      "position - Put in order": "",
+      "name - Enter Name": "",
+      "sailranks Number": "",
+      "Number of Points": "",
+      "flag - enter country code 2 letter - optional": ""
+      }
+  ],
+  "competitors": 
+  [
+    {
+      "position": "1",
+      "name": "FillerName1",
+      "sail": "WLD 7122",
+      "points": "1",
+      "flag": ""
+    },
+    {
+      "position": "2",
+      "name": "FillerName2",
+      "sail": "WLD 7123",
+      "points": "2",
+      "flag": ""
+    },
+    {
+      "position": "3",
+      "name": "FillerName3",
+      "sail": "WLD 7124",
+      "points": "3",
+      "flag": ""
+    },
+    {
+      "position": "4",
+      "name": "FillerName4",
+      "sail": "WLD 7125",
+      "points": "4",
+      "flag": ""
+    },
+    {
+      "position": "5",
+      "name": "FillerName5",
+      "sail": "WLD 7126",
+      "points": "5",
+      "flag": ""
+    }
+  ]
+}
