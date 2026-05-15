@@ -4,7 +4,7 @@ Dynamic HTML dashboards for displaying Play eSailing race schedules and results,
 
 ***
 
-## Screenshots
+## Examples
 
 **Race Card**
 
