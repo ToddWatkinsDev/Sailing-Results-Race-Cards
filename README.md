@@ -1,6 +1,6 @@
 # Play eSailing Dashboards
 
-Dynamic HTML dashboards for displaying Play eSailing race schedules and results, driven by simple JSON data files and served via a local Python server.
+Lightweight HTML dashboards for displaying Play eSailing race schedules and results, driven by simple JSON data files and served via a local Python server.
 
 ***
 
