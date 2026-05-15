@@ -8,7 +8,7 @@ Dynamic HTML dashboards for displaying Play eSailing race schedules and results,
 
 **Race Card**
 
-<img src="images/Race.png" alt="Screenshot" width="250">
+<img src="images/Race.png" alt="Screenshot" width="300">
 
 
 
