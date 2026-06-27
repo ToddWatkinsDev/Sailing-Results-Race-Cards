@@ -1,0 +1,11 @@
+{
+  "eventName": "Monday Muffin Series",
+  "eventDate": "Monday 12 May 2026",
+  "raceDay": "FINAL",
+  "competitors": [
+    { "position": 1, "srid": 555 },
+    { "position": 2, "srid": 5835 },
+    { "position": 3, "srid": 6743 },
+    { "position": 4, "srid": 3 }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "eventName": "Thursday Night Racing", 
+  "enter Event Name": "comment",
+  "eventDate": "Thursday · 25 June 2026",  
+  "enter Event Date keep the dot": "comment",
+  "raceDay": "Thursday Night Racing", 
+  "enter race day": "comment",
+  "races": [
+    {
+      "raceNumber": "1",
+      "less than 6 characters no space": "comment",
+      "course": "LA2",
+      "boat": "SSL",
+      "wind": "10 kts"
+    },
+    {
+      "raceNumber": "2",
+      "less than 5 characters space": "comment",
+      "course": "Opti Course",
+      "boat": "Tornado",
+      "wind": "12 kts"
+    },
+        {
+      "raceNumber": "3",
+      "less than 5 characters space": "comment",
+      "course": "Opti Course",
+      "boat": "Opti",
+      "wind": "15 kts"
+    },
+        {
+      "raceNumber": "4",
+      "less than 5 characters space": "comment",
+      "course": "LA2",
+      "boat": "Dinghy",
+      "wind": "20 kts"
+    },
+        {
+      "raceNumber": "5",
+      "less than 5 characters space": "comment",
+      "course": "Team Race Course",
+      "boat": "SSL",
+      "wind": "19 kts"
+    },
+    {
+      "raceNumber": "Medal Race", 
+      "special format for 'Medal Race' ": "comment",
+      "course": "Olympic Triangle",
+      "boat": "Tornado",
+      "wind": "18 kts"
+    }
+  ]
+}
